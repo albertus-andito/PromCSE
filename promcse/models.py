@@ -146,6 +146,7 @@ def cl_forward(cls,
     past_key_values=None,
     mlm_input_ids=None,
     mlm_labels=None,
+    return_loss=True
 ):
     return_dict = return_dict if return_dict is not None else cls.config.use_return_dict
     ori_input_ids = input_ids
@@ -412,6 +413,7 @@ class BertForCL(BertPreTrainedModel):
         sent_emb=False,
         mlm_input_ids=None,
         mlm_labels=None,
+        return_loss=True
     ):
         if sent_emb:
             return sentemb_forward(self, self.bert,
@@ -440,6 +442,7 @@ class BertForCL(BertPreTrainedModel):
                 return_dict=return_dict,
                 mlm_input_ids=mlm_input_ids,
                 mlm_labels=mlm_labels,
+                return_loss=return_loss,
             )
 
 
@@ -507,6 +510,7 @@ class RobertaForCL(RobertaPreTrainedModel):
         sent_emb=False,
         mlm_input_ids=None,
         mlm_labels=None,
+        return_loss=True
     ):
         if sent_emb:
             return sentemb_forward(self, self.roberta,
@@ -535,4 +539,5 @@ class RobertaForCL(RobertaPreTrainedModel):
                 return_dict=return_dict,
                 mlm_input_ids=mlm_input_ids,
                 mlm_labels=mlm_labels,
+                return_loss=return_loss,
             )
